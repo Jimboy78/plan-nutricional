@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ClientProviders } from "@/components/context/ClientProviders";
 
 export const metadata: Metadata = {
   title: "Plan Nutricional - Sebastian Martini",
@@ -8,8 +9,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
-      <body>{children}</body>
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `(function(){try{var d=localStorage.getItem('nutri_dark_mode');if(d==='true')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})()`,
+        }} />
+      </head>
+      <body>
+        <ClientProviders>{children}</ClientProviders>
+      </body>
     </html>
   );
 }
