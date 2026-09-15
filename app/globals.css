@@ -666,3 +666,735 @@ button:active {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- Batch cooking · Modo domingo ---------- */
+.batch {
+  display: grid;
+  gap: 14px;
+}
+
+.batch-hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border-radius: 20px;
+  color: #fff;
+  background: radial-gradient(420px 220px at 100% 0%, rgba(232, 119, 34, 0.55), transparent 70%),
+    linear-gradient(135deg, #0f2744, #1e4a8a);
+  box-shadow: var(--shadow);
+}
+
+.batch-hero::after {
+  content: "🍳";
+  position: absolute;
+  right: -10px;
+  bottom: -34px;
+  font-size: 150px;
+  opacity: 0.12;
+  transform: rotate(-15deg);
+  animation: batch-sizzle 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes batch-sizzle {
+  50% { transform: rotate(-8deg) translateY(-6px); }
+}
+
+.batch-hero .display {
+  color: #fff;
+}
+
+.batch-hero .eyebrow {
+  color: #ffb877;
+}
+
+.batch-hero .muted {
+  max-width: 580px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.batch-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.batch-stat {
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+.batch-stat strong {
+  display: block;
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.batch-stat span {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.batch-stat--saved strong {
+  color: #86efac;
+}
+
+.batch-hero__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-ghost {
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.batch-live {
+  color: #86efac;
+  font-size: 13px;
+  font-weight: 700;
+  animation: batch-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes batch-blink {
+  50% { opacity: 0.45; }
+}
+
+.batch-flow {
+  padding: 10px 14px;
+  border: 1px solid var(--info-border);
+  border-radius: 12px;
+  background: var(--info-bg);
+  color: var(--info-text);
+  font-size: 13px;
+}
+
+.batch-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.batch-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.batch-tabs button.on {
+  border-color: var(--tab);
+  background: var(--tab);
+  color: #fff;
+}
+
+.batch-tabs b {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.batch-head {
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 12px;
+}
+
+.batch-head .panel__title {
+  margin-bottom: 0;
+}
+
+.batch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.batch-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-card-alt);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  animation: fade-up 0.45s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.batch-card:hover {
+  border-color: rgba(232, 119, 34, 0.5);
+  box-shadow: var(--shadow);
+}
+
+.batch-card.on {
+  border-color: var(--orange);
+  background: linear-gradient(135deg, rgba(232, 119, 34, 0.14), transparent 70%), var(--bg-card-alt);
+}
+
+.batch-card__check {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.batch-card.on .batch-card__check {
+  border-color: var(--orange);
+  background: var(--orange);
+  color: #fff;
+  animation: batch-pop 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes batch-pop {
+  from { transform: scale(0.4); }
+}
+
+.batch-card__body {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.batch-card__body strong {
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.batch-card__body .muted {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.batch-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.batch-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--tag-blue-bg);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.batch-tag--soft {
+  background: var(--border-light);
+}
+
+.station {
+  color: #fff;
+}
+
+.station--horno {
+  background: linear-gradient(135deg, #f97316, #dc2626);
+}
+
+.station--hornalla {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.station--mesada {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+}
+
+.gantt {
+  display: grid;
+  gap: 8px;
+  margin: 6px 0 16px;
+}
+
+.gantt__ticks {
+  position: relative;
+  height: 16px;
+  margin-left: 140px;
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.gantt__ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.gantt__row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.gantt__label {
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gantt__track {
+  position: relative;
+  height: 34px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--bg-card-alt);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.gantt__bar {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  overflow: hidden;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.35);
+  transform-origin: left;
+  animation: gantt-grow 0.6s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes gantt-grow {
+  from { opacity: 0; transform: scaleX(0); }
+}
+
+.batch-steps {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+}
+
+.batch-steps li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--bg-card-alt);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.batch-steps time {
+  color: var(--orange);
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.batch-steps b {
+  color: var(--text-primary);
+}
+
+/* ---------- Modo cocina ---------- */
+.cook {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-y: auto;
+  padding: 20px 16px 40px;
+  color: #f8fafc;
+  background: radial-gradient(700px 400px at 90% -10%, rgba(232, 119, 34, 0.35), transparent 60%),
+    radial-gradient(600px 400px at -10% 110%, rgba(59, 130, 246, 0.25), transparent 60%), #070d1a;
+  animation: cook-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes cook-in {
+  from { opacity: 0; transform: scale(1.03); }
+}
+
+.cook__inner {
+  display: grid;
+  gap: 18px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cook__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cook .display {
+  color: #fff;
+}
+
+.cook .eyebrow {
+  color: #ffb877;
+}
+
+.cook .muted {
+  color: #94a3b8;
+}
+
+.cook__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.cook__awake {
+  padding: 5px 10px;
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.15);
+  color: #fde68a;
+  font-size: 12px;
+}
+
+.cook__btn {
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cook__btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cook__btn--main {
+  border-color: var(--orange);
+  background: var(--orange);
+}
+
+.cook__clock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cook__ring {
+  position: relative;
+  flex-shrink: 0;
+  width: 190px;
+  height: 190px;
+}
+
+.cook__ring svg,
+.cook-task__ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.cook__ring circle,
+.cook-task__ring circle {
+  fill: none;
+}
+
+.cook__ring circle {
+  stroke-width: 12;
+}
+
+.cook__ring .track {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.cook__ring .bar {
+  stroke: url(#cookGrad);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s linear;
+}
+
+.cook__ring-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.cook__ring-center strong {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 48px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.cook__ring-center span {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.cook--paused .cook__ring-center strong {
+  animation: batch-blink 1s ease-in-out infinite;
+}
+
+.cook__summary {
+  display: grid;
+  flex: 1;
+  gap: 10px;
+  min-width: 220px;
+}
+
+.cook__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cook__fact {
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+}
+
+.cook__fact b {
+  margin-right: 4px;
+  color: #ffb877;
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.cook__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.cook__col {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.cook__col h3 {
+  color: #94a3b8;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.cook-task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  animation: fade-up 0.4s both;
+}
+
+.cook-task--active {
+  border-color: rgba(232, 119, 34, 0.55);
+  background: linear-gradient(135deg, rgba(232, 119, 34, 0.22), rgba(255, 255, 255, 0.04));
+  box-shadow: 0 10px 30px -18px rgba(232, 119, 34, 0.9);
+}
+
+.cook-task--done {
+  opacity: 0.55;
+}
+
+.cook-task--done strong {
+  text-decoration: line-through;
+}
+
+.cook-task__ring {
+  position: relative;
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+}
+
+.cook-task__ring circle {
+  stroke-width: 6;
+}
+
+.cook-task__ring .track {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.cook-task__ring .bar {
+  stroke: #ffb877;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s linear;
+}
+
+.cook-task__ring span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.cook-task__body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cook-task__body strong {
+  font-size: 15px;
+}
+
+.cook-task__body small {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.cook-task__when {
+  margin-left: auto;
+  color: #93c5fd;
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+
+.cook__empty {
+  padding: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.cook__alerts {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 110;
+  display: grid;
+  gap: 8px;
+  width: min(92vw, 460px);
+  transform: translateX(-50%);
+}
+
+.cook-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e87722, #dc2626);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+  animation: cook-alert 0.5s cubic-bezier(0.3, 1.5, 0.5, 1), cook-shake 0.5s 0.5s 2;
+}
+
+.cook-alert--start {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+.cook-alert span {
+  font-size: 24px;
+}
+
+@keyframes cook-alert {
+  from { opacity: 0; transform: translateY(-20px) scale(0.9); }
+}
+
+@keyframes cook-shake {
+  25% { transform: translateX(-4px) rotate(-1deg); }
+  75% { transform: translateX(4px) rotate(1deg); }
+}
+
+@media (max-width: 520px) {
+  .gantt__row {
+    grid-template-columns: 86px 1fr;
+  }
+
+  .gantt__ticks {
+    margin-left: 96px;
+  }
+
+  .gantt__label {
+    font-size: 11px;
+  }
+
+  .batch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cook__ring {
+    width: 150px;
+    height: 150px;
+  }
+
+  .cook__ring-center strong {
+    font-size: 38px;
+  }
+}
