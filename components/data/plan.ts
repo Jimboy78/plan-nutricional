@@ -61,7 +61,14 @@ export interface ShoppingCategory {
   items: [string, string][];
 }
 
-export const NAV = ["Perfil & Macros", "Suplementos", "Plan por Dia", "Batch Cooking", "Lista de Compras"];
+export const NAV = ["Hoy", "Perfil & Macros", "Suplementos", "Plan por Dia", "Batch Cooking", "Lista de Compras"];
+export const NAV_ICONS = ["⚡", "📊", "💊", "🍽️", "🥘", "🛒"];
+
+export const DAY_STYLE: Record<string, { label: string; emoji: string; color: string }> = {
+  basquet: { label: "Basquet", emoji: "🏀", color: "#e87722" },
+  gimnasio: { label: "Gimnasio", emoji: "💪", color: "#3b82f6" },
+  descanso: { label: "Descanso", emoji: "😴", color: "#8b5cf6" },
+};
 
 export const BATCH_TABS = [
   { key: "proteina", label: "🍗 Proteinas", color: "#0f2744", bg: "#eff6ff", border: "#bfdbfe" },
@@ -275,10 +282,19 @@ export const SHOPPING: ShoppingCategory[] = [
 
 /** Auto-detect day type based on day of week */
 export function getTodayDayType(): string {
-  const day = new Date().getDay(); // 0=Sun, 1=Mon, ...
+  return getDayTypeFor(new Date());
+}
+
+export function getDayTypeFor(date: Date): string {
+  const day = date.getDay(); // 0=Sun, 1=Mon, ...
   if (day === 0) return "descanso";
   if ([1, 3, 5].includes(day)) return "basquet";
   return "gimnasio"; // 2, 4, 6
+}
+
+/** localStorage date key for any date (same format as getDateKey) */
+export function getDateKeyFor(date: Date): string {
+  return date.toISOString().slice(0, 10);
 }
 
 /** Get today's date key for localStorage */
